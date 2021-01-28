@@ -158,8 +158,8 @@ mapController.animateCamera(CameraUpdate.newLatLngZoom(
 การแสดงผลแผนที่ผ่านหน้าจอจะเป็นการใช้งาน FutureBuilder สำหรับการแสดงผล โดย แอปพลิเคชันจะทำการดึงพิกัดปัจจุบันของผู้ใช้งานก่อน และค่อยทำการแสดงผลแผนที่ ณ ตำแหน่งปัจจุบันของผู้ใช้งาน
 
 ```dart
-.
-.
+..
+
 body: FutureBuilder(
   future: _getLocation(),
   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -182,8 +182,8 @@ body: FutureBuilder(
     }
   },
 ),
-.
-.
+
+..
 ```
 
 ## แหล่งข้อมูลอ้างอิง
