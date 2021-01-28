@@ -103,7 +103,7 @@ import GoogleMaps
 
 ## Geolocator
 
-การใช้งาน Geolocator สำหรับดึงพิกัดปัจจุบันของผู้ใช้งานจากโทรศัพท์
+การใช้งาน Geolocator สำหรับดึงพิกัดปัจจุบันของผู้ใช้งานจากโทรศัพท์ ด้วยการใช้งาน Future
 ```dart
 class ... extends State<MapsPage> {
   Position userLocation;
@@ -152,6 +152,38 @@ GoogleMap(
 ```dart
 mapController.animateCamera(CameraUpdate.newLatLngZoom(
               LatLng(userLocation.latitude, userLocation.longitude), 17));
+```
+
+### การแสดงผลแผนที่ผ่านหน้าจอ
+การแสดงผลแผนที่ผ่านหน้าจอจะเป็นการใช้งาน FutureBuilder สำหรับการแสดงผล โดย แอปพลิเคชันจะทำการดึงพิกัดปัจจุบันของผู้ใช้งานก่อน และค่อยทำการแสดงผลแผนที่ ณ ตำแหน่งปัจจุบันของผู้ใช้งาน
+
+```dart
+.
+.
+body: FutureBuilder(
+  future: _getLocation(),
+  builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    if (snapshot.hasData) {
+      return GoogleMap(
+        mapType: MapType.normal,
+        myLocationEnabled: true,
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+            target: LatLng(userLocation.latitude, userLocation.longitude),
+            zoom: 15),
+      );
+    } else {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[CircularProgressIndicator()],
+        ),
+      );
+    }
+  },
+),
+.
+.
 ```
 
 ## แหล่งข้อมูลอ้างอิง
