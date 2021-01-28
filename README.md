@@ -1,7 +1,5 @@
 # Flutter GoogleMaps
 
-A new Flutter project.
-
 พัฒนาโดย 
 
 [อาจาย์พิศาล สุขขี](https://www.facebook.com/numvarn)
