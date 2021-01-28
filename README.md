@@ -124,6 +124,12 @@ GoogleMap(
 )
 ```
 
+### ตัวอย่างการปรับตำแหน่งปัจจุบันบนแผนที่ด้วย animateCamera
+```dart
+mapController.animateCamera(CameraUpdate.newLatLngZoom(
+              LatLng(userLocation.latitude, userLocation.longitude), 17));
+```
+
 ## แหล่งข้อมูลอ้างอิง
 
 - Flutter : การใช้ Google Maps ใน Flutter [link](https://benzneststudios.com/blog/flutter/using-google-maps-in-flutter/)
