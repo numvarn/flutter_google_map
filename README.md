@@ -83,6 +83,10 @@ import GoogleMaps
 
 ปล. ห้ามลืม import GoogleMaps
 
+```switf
+import GoogleMaps
+```
+
 เพิ่ม permission ที่ ios/Runner/Info.plist
 
 ```swift
