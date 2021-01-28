@@ -101,13 +101,14 @@ import GoogleMaps
 </plist>
 ```
 
-### Geolocator
+## Geolocator
 
 การใช้งาน Geolocator สำหรับดึงพิกัดปัจจุบันของผู้ใช้งานจากโทรศัพท์
 ```dart
 class ... extends State<MapsPage> {
   Position userLocation;
   ..
+  
   Future<Position> _getLocation() async {
     try {
       userLocation = await Geolocator.getCurrentPosition(
@@ -117,6 +118,11 @@ class ... extends State<MapsPage> {
     }
     return userLocation;
   }
+  ..
+
+  @override
+  Widget build(BuildContext context) {
+    ..
 ```
 
 ## GoogleMap
