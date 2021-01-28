@@ -30,6 +30,12 @@ dependencies:
   google_maps_flutter: ^1.1.1
 ```
 
+**การใช้งาน**
+```dart
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+```
+
 ## เพิ่ม Google Maps API key ในโปรเจค
 
 ### สำหรับ Android
