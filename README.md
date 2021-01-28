@@ -101,6 +101,29 @@ import GoogleMaps
 </plist>
 ```
 
+## GoogleMap
+
+### การสร้าง Map Controller
+```dart
+GoogleMapController mapController;
+
+void _onMapCreated(GoogleMapController controller) {
+  mapController = controller;
+}
+```
+
+### ตัวอย่างการเรียกใช้ Wiget GoogleMap()
+```dart
+GoogleMap(
+  mapType: MapType.normal,
+  myLocationEnabled: true,
+  onMapCreated: _onMapCreated,
+  initialCameraPosition: CameraPosition(
+      target: LatLng(13.7650836, 100.5379664),
+      zoom: 15),
+)
+```
+
 ## แหล่งข้อมูลอ้างอิง
 
 - Flutter : การใช้ Google Maps ใน Flutter [link](https://benzneststudios.com/blog/flutter/using-google-maps-in-flutter/)
