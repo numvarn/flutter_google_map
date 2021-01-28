@@ -21,6 +21,17 @@ phisan.s@sskru.ac.th
 
 เพื่อให้นักศึกษาได้ใช้สำหรับการศึกษา ทดลองปฏิบัติตาม ให้เกิดความรู้ ความเข้าใจ และทักษะในการพัฒนาโปรแกรมบนมือถือด้วย Flutter
 
+## เพิ่ม Dependencies ใน Flutter
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  ..
+  cupertino_icons: ^1.0.0
+  geolocator: ^6.1.14
+  google_maps_flutter: ^1.1.1
+```
+
 ## เพิ่ม Google Maps API key ในโปรเจค
 
 พอได้ api key แล้วก็ไปที่ android/app/src/main/AndroidManifest.xml เอา API key ไปใส่ไว้ในนี้ โดยเพิ่มเป็น <meta-data> และเพิ่ม permission สำหรับใช้งาน location
@@ -28,7 +39,8 @@ phisan.s@sskru.ac.th
 ```xml
 <manifest ...
  
-   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
  
   <application ...
     <meta-data android:name="com.google.android.geo.API_KEY"
