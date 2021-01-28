@@ -25,7 +25,7 @@ phisan.s@sskru.ac.th
 
 พอได้ api key แล้วก็ไปที่ android/app/src/main/AndroidManifest.xml เอา API key ไปใส่ไว้ในนี้ โดยเพิ่มเป็น <meta-data> และเพิ่ม permission สำหรับใช้งาน location
 
-```
+```xml
 <manifest ...
  
    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
