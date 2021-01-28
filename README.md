@@ -34,7 +34,9 @@ dependencies:
 
 ## เพิ่ม Google Maps API key ในโปรเจค
 
-พอได้ api key แล้วก็ไปที่ android/app/src/main/AndroidManifest.xml เอา API key ไปใส่ไว้ในนี้ โดยเพิ่มเป็น <meta-data> และเพิ่ม permission สำหรับใช้งาน location
+### สำหรับ Android
+
+พอได้ api key แล้วก็ไปที่ android/app/src/main/AndroidManifest.xml เอา API key ไปใส่ไว้ในนี้ โดยเพิ่มเป็น <meta-data> และเพิ่ม permission สำหรับใช้งาน geolocator
 
 ```xml
 <manifest ...
@@ -45,4 +47,48 @@ dependencies:
   <application ...
     <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="YOUR KEY HERE"/>
+```
+
+### สำหรับ iOS
+
+สำหรับ iOS จะเพิ่ม API key ที่ ios/Runner/AppDelegate.swift
+
+```swift
+GMSServices.provideAPIKey("YOUR KEY HERE")
+```
+
+โดยเพิ่มที่
+
+```swift
+import UIKit
+import Flutter
+import GoogleMaps
+ 
+@UIApplicationMain
+@objc class AppDelegate: FlutterAppDelegate {
+  override func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
+  ) -> Bool {
+    GMSServices.provideAPIKey("YOUR KEY HERE")
+    GeneratedPluginRegistrant.register(with: self)
+    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  }
+}
+```
+
+ปล. ห้ามลืม import GoogleMaps
+
+เพิ่ม permission ที่ ios/Runner/Info.plist
+
+```swift
+<plist version="1.0">
+<dict>
+	...
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs your location to test the location feature of the Google Maps plugin.</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+</dict>
+</plist>
 ```
