@@ -109,7 +109,8 @@ import GoogleMaps
 
 ```dart
 class ... extends State<MapsPage> {
-  Position userLocation;
+  late Position userLocation;
+  late GoogleMapController mapController;
   ..
 
   Future<Position> _getLocation() async {
