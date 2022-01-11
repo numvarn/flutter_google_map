@@ -1,6 +1,6 @@
 # Flutter GoogleMaps
 
-พัฒนาโดย 
+พัฒนาโดย
 
 [อาจาย์พิศาล สุขขี](https://www.facebook.com/numvarn)
 
@@ -20,6 +20,7 @@ phisan.s@sskru.ac.th
 เพื่อให้นักศึกษาได้ใช้สำหรับการศึกษา ทดลองปฏิบัติตาม ให้เกิดความรู้ ความเข้าใจ และทักษะในการพัฒนาโปรแกรมบนมือถือด้วย Flutter
 
 ## เพิ่ม Dependencies ใน Flutter
+
 ```yaml
 dependencies:
   flutter:
@@ -31,6 +32,7 @@ dependencies:
 ```
 
 **การใช้งาน**
+
 ```dart
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -44,10 +46,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 ```xml
 <manifest ...
- 
+
    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
- 
+
   <application ...
     <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="YOUR KEY HERE"/>
@@ -67,7 +69,7 @@ GMSServices.provideAPIKey("YOUR KEY HERE")
 import UIKit
 import Flutter
 import GoogleMaps
- 
+
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
@@ -104,18 +106,35 @@ import GoogleMaps
 ## Geolocator
 
 การใช้งาน Geolocator สำหรับดึงพิกัดปัจจุบันของผู้ใช้งานจากโทรศัพท์ ด้วยการใช้งาน Future
+
 ```dart
 class ... extends State<MapsPage> {
   Position userLocation;
   ..
-  
+
   Future<Position> _getLocation() async {
-    try {
-      userLocation = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best);
-    } catch (e) {
-      userLocation = null;
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
     }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    userLocation = await Geolocator.getCurrentPosition();
     return userLocation;
   }
   ..
@@ -128,6 +147,7 @@ class ... extends State<MapsPage> {
 ## GoogleMap
 
 ### การสร้าง Map Controller
+
 ```dart
 GoogleMapController mapController;
 
@@ -137,6 +157,7 @@ void _onMapCreated(GoogleMapController controller) {
 ```
 
 ### ตัวอย่างการเรียกใช้ Wiget GoogleMap()
+
 ```dart
 GoogleMap(
   mapType: MapType.normal,
@@ -149,12 +170,14 @@ GoogleMap(
 ```
 
 ### ตัวอย่างการปรับตำแหน่งปัจจุบันบนแผนที่ด้วย animateCamera
+
 ```dart
 mapController.animateCamera(CameraUpdate.newLatLngZoom(
               LatLng(userLocation.latitude, userLocation.longitude), 17));
 ```
 
 ## การแสดงผลแผนที่ผ่านหน้าจอ
+
 การแสดงผลแผนที่ผ่านหน้าจอจะเป็นการใช้งาน FutureBuilder สำหรับการแสดงผล โดย แอปพลิเคชันจะทำการดึงพิกัดปัจจุบันของผู้ใช้งานก่อน และค่อยทำการแสดงผลแผนที่ ณ ตำแหน่งปัจจุบันของผู้ใช้งาน
 
 ```dart
