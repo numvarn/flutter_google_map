@@ -27,8 +27,8 @@ dependencies:
     sdk: flutter
   ..
   cupertino_icons: ^1.0.0
-  geolocator: ^6.1.14
-  google_maps_flutter: ^1.1.1
+  geolocator: ^8.0.1
+  google_maps_flutter: ^2.1.1
 ```
 
 **การใช้งาน**
